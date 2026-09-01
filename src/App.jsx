@@ -1,7 +1,7 @@
 function App() {
 
   return (
-    <p>
+    <p className="flex w-full min-h-screen h-full items-center justify-center">
       Notes app --&gt; start
     </p>
   )
