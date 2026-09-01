@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
         getSession()
 
         // actively listen for auth state changes (login/out)
-        supabase.auth.onAuthStateChange(session => {
+        supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
         })
     }, [])
