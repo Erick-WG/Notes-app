@@ -10,7 +10,7 @@ const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
     // session object from supabase, undefined by default.
     const [session, setSession] = useState(undefined);
-    const [user, setUser] = useState('guest');
+    const user = session?.user ?? 'guest'
 
     // checking for a session token on first render.
     useEffect(()=>{
@@ -29,7 +29,6 @@ export const AuthProvider = ({children}) => {
 
             // update session data
             setSession(data.session);
-            setUser(data.session.user);
             return data.session
         } catch (error) {
             return new Error(`Failed to get session data!`)
@@ -42,7 +41,7 @@ export const AuthProvider = ({children}) => {
      * 
      * @param {string} email 
      * @param {string} password 
-     * @returns {{success: boolean, error?: string}} returns successful signup status and an error if something goes wrong, if signup successfull we update the app's session data with the current user's session data.
+     * @returns {{success: boolean, session: object} | {success: boolean, error?: string}} returns successful signup status and an error if something goes wrong, if signup successfull we update the app's session data with the current user's session data.
      */
     const signInUser = async (email, password) => {
         const {data, error} = await supabase.auth.signInWithPassword({
@@ -65,7 +64,7 @@ export const AuthProvider = ({children}) => {
      * @param {string} name 
      * @param {string} email 
      * @param {password} password 
-     * @returns {{success: boolean, data: object} | {success: boolean, error: string}} returns an object containing the user's data and signup status
+     * @returns {{success: boolean, session: object} | {success: boolean, error: string}} returns an object containing the user's data and signup status
      */
     const signUpUser = async (name, email, password) => {
         try {
@@ -82,8 +81,9 @@ export const AuthProvider = ({children}) => {
             if (error) throw new Error(`Failed to sign up user!`)
 
             setSession(data.session)
-            return {success: true, data}
+            return {success: true, data: data.session}
         } catch (error) {
+            console.log(error)
             return {success: false, error: new Error(`Failed to sign up user!`)}
         }
     }
