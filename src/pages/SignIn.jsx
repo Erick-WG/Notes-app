@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@utils/provider/AuthProvider';
 
@@ -10,8 +10,11 @@ const SignIn = () => {
     const { signInUser, session } = useAuth();
     const navigate = useNavigate();
 
-    // navigate to the dashboard when we are already have a session.
-    if(session) return navigate('/dashboard');
+    useEffect(()=> {
+        // navigate to the dashboard when we are already have a session.
+        if(session) return navigate('/dashboard');
+    }, [session, navigate])
+    
 
     // get form data and update supabase.
     const [error, handleSignIn, isPending] = useActionState(
@@ -49,7 +52,7 @@ const SignIn = () => {
             <div className='flex flex-col gap-2'>
                 <label for="email">
                     Email: 
-                    <input type="text" name="email" id="email" placeholder='First Name | username'/>
+                    <input type="text" name="email" id="email" placeholder='name@mail.com'/>
                 </label>
                 <label for="password">
                     Password: 

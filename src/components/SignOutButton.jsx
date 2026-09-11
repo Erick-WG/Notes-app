@@ -20,7 +20,7 @@ const SignOutButton = () => {
     }
     
   return (
-    <button onClick={handleLogout} className='flex flex-row gap-1.5 items-center justify-center bg-error/20 hover:bg-error/30 text-error font-semibold px-6 py-4 border border-error rounded-lg hover:cursor-pointer'>
+    <button onClick={handleLogout} className='flex flex-row w-full max-w-52 gap-1.5 items-center justify-center bg-error/20 hover:bg-error/30 text-error font-semibold px-4 py-2 border border-error rounded-lg hover:cursor-pointer'>
       Logout
       <LogOut size={20}/>
     </button>

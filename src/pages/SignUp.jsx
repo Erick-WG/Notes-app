@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@utils/provider/AuthProvider';
 
@@ -10,8 +10,11 @@ const SignUp = () => {
     const { signUpUser, session } = useAuth();
     const navigate = useNavigate()
 
-    // navigate to the dashboard when we are already have a session.
-    if(session) return navigate('/dashboard');
+    useEffect(()=> {
+        // navigate to the dashboard when we are already have a session.
+        if(session) return navigate('/dashboard');
+    }, [session, navigate]);
+    
 
     // get form data and update supabase.
     const [error, handleSignUp, isPending] = useActionState(

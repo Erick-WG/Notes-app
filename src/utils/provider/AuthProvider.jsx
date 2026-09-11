@@ -10,7 +10,7 @@ const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
     // session object from supabase, undefined by default.
     const [session, setSession] = useState(undefined);
-    const user = session?.user ?? 'guest'
+    const user = session?.user ?? null
 
     // checking for a session token on first render.
     useEffect(()=>{
