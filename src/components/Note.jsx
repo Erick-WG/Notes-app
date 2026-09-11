@@ -1,10 +1,97 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { SquarePenIcon, Trash2Icon } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
+
+// data.
+import { useData } from '@/utils/provider/DataProvider';
+import { getDataFormat } from '@/utils/HelperFunction/getDateFormat';
+
 
 const Note = () => {
+  const navigate = useNavigate();
+
+  // data.
+  const { getNoteById, deleteNote } = useData();
+  const { noteId } = useParams();
+  const [note, setNote] = useState({})
+  const {id, title, created_at, content, tags} = note
+
+  // getting the note data on initial page load.
+  useEffect(()=>{
+    const getNote = async () => {
+      const { data, error } = await getNoteById(noteId);
+      if(!error) setNote(data)
+    }
+
+    getNote();
+  }, [getNoteById])
+
+  // todo: add alert when delete is successfull.
+  // handler functions.
+  const handleDeleteNote = async (id) => {
+    const { data, error } = await deleteNote(id)
+    if(!error) return navigate(-1);
+    console.log(`Deleted: ${data[0].title}`)
+    return { data, error }
+  }
+
   return (
-    <div>
-      note page
-    </div>
+    Object.values(note).length !== 0 ? (
+      <div className='relative flex-1 flex flex-col gap-1.5 w-full max-w-180'>
+        {/* page title */}
+        <title>
+          {title}
+        </title>
+
+        {/* header */}
+        <div className='flex flex-col tracking-wide w-full'>
+          <p className='font-extralight text-sm text-muted-foreground'>
+            {getDataFormat(created_at)}
+          </p>
+          <h2 className='text-foreground font-semibold text-2xl'>
+            {title}
+          </h2>
+        </div>
+        
+        {/* content */}
+        <div className='flex-1 flex flex-col gap-6 mt-4'>
+          <p className='flex-1'>
+            {content}
+          </p>
+
+          <div className='flex flex-col gap-2'>
+            {/* <h3>Tags</h3> */}
+            <div className='flex flex-row flex-wrap gap-2'>
+              {tags.map((tag) => (
+                <span className='flex items-center text-sm bg-secondary/10 px-4 py-0.5 rounded-lg border border-secondary'>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="controls" className='sticky bottom-0 bg-background flex flex-col gap-4 mt-12 border-border border-t py-6'>
+
+          <div className='flex flex-row gap-4 font-semibold'>
+            <button 
+              className='flex flex-row gap-1 items-center bg-primary/10 px-6 py-1.5 rounded-2xl border border-primary text-primary hover:cursor-pointer hover:bg-primary/20'
+              onClick={() => navigate('edit')}
+            >
+              <SquarePenIcon />
+              Edit
+            </button>
+            <button 
+              className='flex flex-row gap-1 items-center bg-danger/20 px-6 py-1.5 rounded-2xl border border-danger text-danger hover:cursor-pointer hover:bg-danger/40'
+              onClick={() => handleDeleteNote(id)}
+            >
+              <Trash2Icon />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div>Loading</div>
+    )
   )
 }
 
