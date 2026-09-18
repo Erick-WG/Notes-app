@@ -7,7 +7,7 @@ const Footer = () => {
       {/* signature. */}
       <div className='flex flex-row items-center gap-1'>
         <p className='font-sans font-bold text-lg font-stretch-75% tracking-wide'>Erick WG</p>
-        <p class="font-thin text-2xl text-neutral-500">X</p>
+        <p className="font-thin text-2xl text-neutral-500">X</p>
         <p className='flex flex-row items-center font-sans font-bold text-lg font-stretch-75% tracking-wide text-emerald-500'>Supabase <Zap/></p>
       </div>
 

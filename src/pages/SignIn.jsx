@@ -50,11 +50,11 @@ const SignIn = () => {
         </div>
         <form action={handleSignIn} className='flex flex-col gap-9 min-h-72.5 h-full justify-between max-w-120'>
             <div className='flex flex-col gap-2'>
-                <label for="email">
+                <label htmlFor="email">
                     Email: 
                     <input type="text" name="email" id="email" placeholder='name@mail.com'/>
                 </label>
-                <label for="password">
+                <label htmlFor="password">
                     Password: 
                     <input type="password" name="password" id="password" />
                 </label>

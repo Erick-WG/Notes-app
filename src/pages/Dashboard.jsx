@@ -67,7 +67,7 @@ const Dashboard = () => {
             >
               <p className="flex items-start tracking-wide font-semibold text-xs text-muted-foreground">Notes saved</p>
               <div className="flex-1 flex items-center justify-center">
-                <p className="font-bold font-noto-sans text-5xl">{totalNotes ? totalNotes : ''}</p>
+                <p className="font-bold font-noto-sans text-5xl">{totalNotes}</p>
               </div>
             </div>
             <div 
@@ -133,7 +133,12 @@ const Dashboard = () => {
               error ? (
                 <ErrorDiv error={error}/>
               ) : (
-                <div className="flex-1 min-h-30 items-center">Loading preview...</div>
+                totalNotes === 0 ? (
+                  <div className="flex-1 flex min-h-20 items-center justify-center">Create a note to see the preview...</div>
+                  
+                ) : (
+                  <div className="flex-1 min-h-30 items-center">Loading preview...</div>
+                )
               )
             )}
           </div>

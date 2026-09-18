@@ -14,7 +14,7 @@ const MainLayout = () => {
         <aside className="hidden md:flex border-r border-border">
           <SideBar/>
         </aside>
-        <div className="p-4 flex-1">
+        <div className="p-4 flex-1 mb-12">
           <Outlet />
         </div>
       </main>
