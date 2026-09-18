@@ -7,11 +7,11 @@ import Landing from "@components/Landing";
 import SignIn from "@pages/SignIn";
 import SignUp from "@pages/SignUp";
 import Dashboard from "@pages/Dashboard";
-import NotesLayout from "./pages/NotesLayout";
-import NotesCollection from "./pages/NotesCollection";
-import Note from "./components/Note";
-import AddNote from "./components/AddNote";
-import EditNote from "./components/EditNote";
+import NotesLayout from "@pages/NotesLayout";
+import NotesCollection from "@pages/NotesCollection";
+import Note from "@components/Note";
+import AddNote from "@components/AddNote";
+import EditNote from "@components/EditNote";
 
 
 function App() {

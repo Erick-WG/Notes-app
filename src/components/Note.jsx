@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useData } from '@/utils/provider/DataProvider';
 import { getDataFormat } from '@/utils/HelperFunction/getDateFormat';
 
-
+// todo: confirm deletion with a modal.
 const Note = () => {
   const navigate = useNavigate();
 
@@ -55,15 +55,15 @@ const Note = () => {
         
         {/* content */}
         <div className='flex-1 flex flex-col gap-6 mt-4'>
-          <p className='flex-1'>
+          <p className='flex-1 min-h-40'>
             {content}
           </p>
 
           <div className='flex flex-col gap-2'>
             {/* <h3>Tags</h3> */}
             <div className='flex flex-row flex-wrap gap-2'>
-              {tags.map((tag) => (
-                <span className='flex items-center text-sm bg-secondary/10 px-4 py-0.5 rounded-lg border border-secondary'>{tag}</span>
+              {tags.map((tag, index) => (
+                <span key={index} className='flex items-center text-xs text-muted-foreground bg-muted-foreground/10 px-4 py-0.5 rounded-lg border border-muted-foreground'>{tag}</span>
               ))}
             </div>
           </div>
