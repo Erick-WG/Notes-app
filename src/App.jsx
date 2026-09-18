@@ -9,6 +9,7 @@ import SignUp from "@pages/SignUp";
 import Dashboard from "@pages/Dashboard";
 import NotesLayout from "@pages/NotesLayout";
 import NotesCollection from "@pages/NotesCollection";
+import PageNotFound from "@pages/PageNotFound";
 import Note from "@components/Note";
 import AddNote from "@components/AddNote";
 import EditNote from "@components/EditNote";
@@ -35,7 +36,7 @@ function App() {
             </Route>
 
             {/* default page */}
-            <Route path="*" element={'error 404, page not found'}/>
+            <Route path="*" element={<PageNotFound/>} />
           </Route>
         </Routes>
       </BrowserRouter>
