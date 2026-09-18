@@ -52,10 +52,52 @@ export function DataProvider({ children }) {
         const { data, error } = await supabase
             .from('notes')
             .select('*')
-            .eq('user_id', user.id);
+            .eq('user_id', user.id)
+            .order('created_at', {ascending: false});
         if (!error) setNotes(data);
         setLoading(false);
     }, [user]);
+
+
+    /**
+     * Fetches the most recently created note belonging to the current user.
+     *
+     * The function queries the `notes` table in Supabase, filters by the
+     * authenticated user's ID, and orders the results by creation date
+     * in descending order. Only the latest note is returned.
+     *
+     * @async
+     * @function getRecentNote
+     * @returns {Promise<{data: Array, error: Object|null}|undefined>}
+     *   A promise that resolves to the Supabase response containing the
+     *   fetched note data and any error. Returns undefined if no user
+     *   is authenticated.
+     *
+     * @example
+     * const getRecentNote = async () => { 
+     *    const result = await getRecentNote();
+     *    if (result?.data) {
+     *      console.log('Recent note:', result.data[0]);
+     *    }
+     * }
+     *
+     */
+    const getRecentNote = async () => {
+      if (!user) return;
+    
+      setLoading(true);
+    
+      const { data, error } = await supabase
+        .from('notes')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(1);
+    
+      if (!error) return { data, error };
+    
+      setLoading(false);
+    };
 
 
     /**
@@ -134,7 +176,7 @@ export function DataProvider({ children }) {
         return { data, error }
     }
 
-  const value = { notes, loading, getNotes, getNoteById, addNote, deleteNote, updateNote };
+  const value = { notes, totalNotes: notes.length, loading, getNotes, getRecentNote,  getNoteById, addNote, deleteNote, updateNote };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
