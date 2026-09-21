@@ -5,6 +5,7 @@ import { Trash2Icon } from 'lucide-react';
 // utils.
 import { useData } from '@/utils/provider/DataProvider';
 import { getDataFormat } from '@utils/HelperFunction/getDateFormat';
+import { formatDistanceToNow } from 'date-fns';
 
 
 // todo: add a toast to notify the user when actions are successfull.
@@ -37,13 +38,13 @@ const NoteCard = ({id, title, content, date, tags}) => {
         </div>
       </div> */}
 
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-row justify-between items-center'>
         <div 
-          className='flex flex-col font-semibold'
+          className='flex flex-col gap-0.5 font-extraligt'
           onClick={handleNavigate}
         >
-          <p className='text-sm text-muted-foreground'>{getDataFormat(date)}</p>
-          <h2 className='text-xl line-clamp-1 max-w-62'>{title}</h2>
+          <p className='text-sm font-noto-sans text-muted-foreground italic'>{getDataFormat(date)}</p>
+          <span className='text-xs text-muted-foreground'>{formatDistanceToNow(date, {addSuffix: true})}</span>
         </div>
         
         <div 
@@ -57,10 +58,11 @@ const NoteCard = ({id, title, content, date, tags}) => {
 
       {/* content preview */}
       <div 
-        className='flex flex-1 text-muted-foreground hover:text-foreground'
+        className='flex flex-col gap-1 flex-1 mt-1.5'
         onClick={handleNavigate}
       >
-        <p className='line-clamp-3'>{content}</p>
+        <h2 className='text-xl line-clamp-1 font-semibold'>{title}</h2>
+        <p className='line-clamp-3 text-muted-foreground'>{content}</p>
       </div>
       
       {/* info */}

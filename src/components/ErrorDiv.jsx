@@ -5,7 +5,7 @@ const ErrorDiv = ({error}) => {
     <div 
       id='error' 
       aria-errormessage={error.message}
-      className='flex flex-row items-center justify-center gap-1 text-sm'
+      className='flex flex-row items-center justify-center gap-1 text-sm text-danger'
       >
         <CircleAlertIcon size={16}/>
         <p>{error.message}</p>

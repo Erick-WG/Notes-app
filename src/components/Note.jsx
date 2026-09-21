@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 // data.
 import { useData } from '@/utils/provider/DataProvider';
 import { getDataFormat } from '@/utils/HelperFunction/getDateFormat';
+import { formatDistanceToNow } from 'date-fns';
 
 // todo: confirm deletion with a modal.
 const Note = () => {
@@ -44,17 +45,20 @@ const Note = () => {
         </title>
 
         {/* header */}
-        <div className='flex flex-col tracking-wide w-full'>
-          <p className='font-extralight text-sm text-muted-foreground'>
+        <div className='flex flex-col tracking-wide w-full font-extralight text-sm text-muted-foreground'>
+          <p className='text-sm italic'>
             {getDataFormat(created_at)}
           </p>
-          <h2 className='text-foreground font-semibold text-2xl'>
-            {title}
-          </h2>
+          <span className='text-xs'>
+            {formatDistanceToNow(created_at, {addSuffix: true})}
+          </span>
         </div>
         
         {/* content */}
-        <div className='flex-1 flex flex-col gap-6 mt-4'>
+        <div className='flex-1 flex flex-col gap-1.5 mt-4'>
+          <h2 className='text-foreground font-semibold text-2xl'>
+            {title}
+          </h2>
           <p className='flex-1 min-h-40'>
             {content}
           </p>

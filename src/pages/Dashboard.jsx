@@ -50,7 +50,7 @@ const Dashboard = () => {
       </h1>
 
       {/* body flex-1 */}
-      <div className="flex-1 flex flex-col-reverse md:flex-row w-full gap-6 mt-6 justify-center">
+      <div className="flex-1 flex flex-col-reverse md:flex-row w-full gap-6 mt-6 justify-center items-center md:items-start">
         {/* notes db metrix, grid */}
         <div className="flex flex-col gap-1 md:max-w-1/4 md:min-w-80">
           <div className="grid grid-cols-4 w-full min-w-60 max-w-120 grid-rows-2 gap-2 gap-y-6 md:gap-y-4">

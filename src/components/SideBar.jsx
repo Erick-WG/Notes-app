@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 
 import SignOutButton from './SignOutButton'
 
+import { useAuth } from '@/utils/provider/AuthProvider'
+
 const SideBar = () => {
+    const { session } = useAuth();
   return (
-    <div className='flex flex-col sticky top-14.25 max-h-[90svh] min-w-50 max-w-60'>
+    <div className={`${session ? 'flex flex-col sticky top-14.25 max-h-[90svh] min-w-50 max-w-60' : 'hidden'}`}>
         {/* top logo + sidebar toggle */}
         <div className='flex flex-row w-full justify-between gap-2 pt-4 px-4'>
             <div></div>
@@ -16,9 +19,9 @@ const SideBar = () => {
         </div>
 
         {/* nav links */}
-        <div className='flex-1 pt-4 flex flex-col gap-4 right-0 justify-between shadow-lg'>
+        <div className='flex-1 pt-4 flex flex-col gap-4 right-0 justify-between'>
             {/* links */}
-            <div className=' flex-1 flex flex-col w-full overflow-hidden'>
+            <div className='flex-1 flex flex-col w-full overflow-hidden'>
                 <Link to={'/dashboard'} 
                     className='flex flex-row flex-nowrap gap-1 items-center py-2 px-4 hover:bg-border border-y border-background hover:border-foreground'
                 >
