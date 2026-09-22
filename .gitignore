@@ -27,3 +27,4 @@ dist-ssr
 *.sw?
 # Local Netlify folder
 .netlify
+public/_redirects
