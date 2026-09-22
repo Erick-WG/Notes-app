@@ -38,7 +38,7 @@ const SignIn = () => {
                     return null;
                 }
             } catch (error) {
-                return new Error(`Failed to signIn!, Please try again...`)
+                return new Error(`Failed to signIn!, Please try again...`, error)
             }
 
         }, null // initial error value

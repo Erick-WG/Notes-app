@@ -31,7 +31,7 @@ export const AuthProvider = ({children}) => {
             setSession(data.session);
             return data.session
         } catch (error) {
-            return new Error(`Failed to get session data!`)
+            return new Error(`Failed to get session data!`, error)
         }
     }
 
@@ -101,6 +101,7 @@ export const AuthProvider = ({children}) => {
             // setSession(null)
             return {success: true}
         } catch (error) {
+            console.log(error?.message)
             return {success: false, error: new Error(`Failed to logout!`)}
         }
     }

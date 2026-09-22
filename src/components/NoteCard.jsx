@@ -70,7 +70,7 @@ const NoteCard = ({id, title, content, date, tags}) => {
         <div className='flex flex-row items-center justify-between border-t border-border mt-2 pt-4'>
           <div id='tags' className='flex flex-wrap w-full gap-1 text-xs text-primary'>
             {tags.map(tag => (
-              <span className='flex items-center bg-primary/10 border border-primary px-1 rounded'>{tag}</span>
+              <span className='flex items-center bg-primary/10 border border-primary px-1 rounded' key={tag}>{tag}</span>
             ))}
           </div>
         </div>

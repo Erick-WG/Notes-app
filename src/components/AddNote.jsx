@@ -1,4 +1,4 @@
-import React, { useActionState, useEffect, useState } from 'react';
+import React, { useActionState, useState } from 'react';
 
 // utils.
 import { useData } from '@utils/provider/DataProvider';
@@ -49,7 +49,7 @@ const AddNote = () => {
         }
 
       } catch (error) {
-        return new Error(`Failed to add new note!`)
+        return new Error(`Failed to add new note!`, error)
       }
     },
     null // initial error state.

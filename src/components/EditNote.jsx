@@ -31,7 +31,7 @@ const EditNote = () => {
     }
 
     getNote();
-    }, [getNoteById])
+    }, [getNoteById, noteId])
 
 
 
@@ -57,7 +57,7 @@ const EditNote = () => {
 
 
         } catch (error) {
-            return new Error(`Failed to add new note!`)
+            return new Error(`Failed to add new note!`, error)
         }
         },
         null // initial error state.

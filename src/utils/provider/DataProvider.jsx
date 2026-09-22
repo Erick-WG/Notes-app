@@ -125,7 +125,7 @@ export function DataProvider({ children }) {
         .eq('id', id)
         .single();
       return { data, error };
-    }, [id]);
+    }, []);
 
     /**
      * Updates a note by id, applying an optimistic update to local state

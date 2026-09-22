@@ -25,7 +25,7 @@ const Note = () => {
     }
 
     getNote();
-  }, [getNoteById])
+  }, [getNoteById, noteId])
 
   // todo: add alert when delete is successfull.
   // handler functions.
